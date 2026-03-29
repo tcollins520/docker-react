@@ -1,0 +1,12 @@
+sudo: required
+# tells travis to install docker
+services:
+  - docker
+
+# tells travis to run the command to build the docker image using the Dockerfile.dev with the tag tcollins520/docker-react before running tests
+before_install:
+  - docker build -t tcollins520/docker-react -f Dockerfile.dev .
+
+# tells travis to run the command to run the tests in the docker container with the tag tcollins520/docker-react and set the environment variable CI to true to prevent watch mode from running
+script:
+  - docker run -e CI=true tcollins520/docker-react npm run test
