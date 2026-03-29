@@ -1,5 +1,5 @@
 # Use Node.js runtime as a parent image
-FROM node:Its-alpine
+FROM node:14-alpine
 # Set the working directory in the container to /app
 WORKDIR '/app'
 # copy package.json to the working directory of the container which is /app
