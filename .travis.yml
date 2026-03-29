@@ -10,3 +10,16 @@ before_install:
 # tells travis to run the command to run the tests in the docker container with the tag tcollins520/docker-react and set the environment variable CI to true to prevent watch mode from running
 script:
   - docker run -e CI=true tcollins520/docker-react npm run test
+
+# tells travis to deploy the application to elastic beanstalk using the provider elasticbeanstalk, region us-east-1, app name docker, environment name docker-env, bucket name elasticbeanstalk-us-east-1-923445559289, bucket path docker and only deploy when the branch is main
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker"
+  env: "frontend-env"
+  bucket_name: "elasticbeanstalk-us-east-1-788143860357"
+  bucket_path: "docker"
+  on:
+    branch: master
+access_key_id: $AWS_ACCESS_KEY  
+secret_access_key: "$AWS_SECRET_KEY"
